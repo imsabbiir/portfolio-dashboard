@@ -41,7 +41,7 @@ function Page() {
 
   return (
     <div className="mt-5">
-      <div className="w-full grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-3">
+      <div className="w-full grid  md:grid-cols-3 lg:grid-cols-3 gap-3">
         {pricingPlans.map((plan, planIndex) => {
           const isEditing = editIndex === planIndex;
 

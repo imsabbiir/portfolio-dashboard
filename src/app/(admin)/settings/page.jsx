@@ -97,9 +97,9 @@ const Settings = () => {
 
   return (
     <div className="">
-      <div className="grid grid-cols-3 gap-7">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
         {/* Profile Section */}
-        <div className="py-5 px-10 rounded flex flex-col justify-center items-center gradientBg relative">
+        <div className="py-5 md:px-10 rounded flex flex-col justify-center items-center gradientBg relative">
           <div className="mt-4 relative w-32 h-32 rounded-full overflow-hidden group cursor-pointer">
             <Image
               src={tempValues.profileImage || details.profileImage}
@@ -161,7 +161,7 @@ const Settings = () => {
         </div>
 
         {/* Address Section */}
-        <div className="py-5 px-10 rounded flex flex-col justify-center items-center gradientBg relative">
+        <div className="py-5 px-3 md:px-10 rounded flex flex-col justify-center items-center gradientBg relative">
           <ul className="w-full flex flex-col gap-2 titleText">
             <li className="flex justify-between w-full items-center">
               <span>Residence:</span>
@@ -215,7 +215,7 @@ const Settings = () => {
         </div>
 
         {/* Contact Section */}
-        <div className="py-5 px-10 rounded flex flex-col justify-center items-center gradientBg relative">
+        <div className="py-5 px-3 md:px-10 rounded flex flex-col justify-center items-center gradientBg relative">
           <ul className="w-full flex flex-col gap-2 titleText">
             <li className="flex justify-between w-full items-center">
               <span>Email:</span>

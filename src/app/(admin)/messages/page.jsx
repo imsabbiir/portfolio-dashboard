@@ -54,8 +54,8 @@ function page() {
   };
 
   return (
-    <div className="w-full h-full grid grid-cols-6 gap-10 overflow-hidden">
-      <div className="col-span-2 flex flex-col gap-5 overflow-auto">
+    <div className="w-full h-full grid md:grid-cols-6 gap-10 overflow-hidden">
+      <div className="md:col-span-2 flex flex-col gap-5 overflow-auto">
         <Scrollbar
           className="hide-scrollbar flex flex-col gap-3"
           plugins={{ overscroll: { effect: "bounce" } }}
@@ -95,32 +95,32 @@ function page() {
       </div>
 
       {/* Right Panel */}
-      <div className="col-span-3 p-10 rounded gradientBg">
+      <div className="md:col-span-3 p-3 md:p-10 rounded gradientBg">
         {selectedMessage ? (
           <div className="text-white space-y-2">
-            <div className="flex gap-3 items-center">
-              <h2>Name:</h2>
-              <h2 className="text-xl font-semibold">{selectedMessage.name}</h2>
+            <div className="flex gap-3 items-center text-sm">
+              <h2 className="text-sm md:text-base">Name:</h2>
+              <h2 className="md:text-xl font-semibold">{selectedMessage.name}</h2>
             </div>
             <div className="flex gap-3 items-center">
-              <h2>Email:</h2>
-              <p className="text-sm text-gray-300">{selectedMessage.email}</p>
+              <h2 className="text-sm md:text-base">Email:</h2>
+              <p className="text-xs md:text-sm text-gray-300">{selectedMessage.email}</p>
               <button
                 onClick={() => {
                   navigator.clipboard.writeText(selectedMessage.email);
                   alert("Email copied to clipboard!");
                 }}
-                className="text-xs bg-yellow-400 text-black px-2 py-1 rounded cursor-pointer hover:bg-yellow-300 transition"
+                className="text-xs rounded cursor-pointer titleText"
               >
-                Copy
+                <FiCopy />
               </button>
             </div>
-            <div className="flex gap-3 items-center">
-              <h2>Service Type:</h2>
-              <p className="text-base">{selectedMessage.service}</p>
+            <div className="flex">
+              <h2 className="text-sm md:text-base">{`Service: `} </h2>
+              <p className="text-sm md:text-base ml-2">{ selectedMessage.service}</p>
             </div>
             <div className="flex gap-3 items-center">
-              <h2>Package Type:</h2>
+              <h2 className="text-sm md:text-base">Package Type:</h2>
               <p className="text-base">{selectedMessage.package}</p>
             </div>
           </div>

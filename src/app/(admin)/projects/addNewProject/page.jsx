@@ -177,92 +177,109 @@ function Page() {
 
 
   return (
-    <div>
-      <h2 className="text-lg titleText">Add New Project</h2>
-      <div className="grid grid-cols-6 gap-14 mt-5">
-        <div className="col-span-4">
-          <input
-            name="title"
-            value={formData.title}
-            placeholder="Project Name"
-            onChange={(e) => updateForm(e.target.name, e.target.value)}
-            className="gradientBg w-full subTitleText font-thin rounded px-4 outline-none py-2"
-          />
-          <TinyEditor
-            value={formData.description}
-            onEditorChange={(val) => updateForm("description", val)}
-          />
-          <MultipleImageSelection onFilesChange={setSelectedImages} />
+    <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 py-6 overflow-x-hidden">
+  <h2 className="text-lg titleText">Add New Project</h2>
+
+  <div className="grid grid-cols-1 md:grid-cols-6 gap-8 md:gap-14 mt-5">
+    {/* Left Section */}
+    <div className="col-span-6 md:col-span-4 flex flex-col gap-4">
+      <input
+        name="title"
+        value={formData.title}
+        placeholder="Project Name"
+        onChange={(e) => updateForm(e.target.name, e.target.value)}
+        className="gradientBg w-full subTitleText font-thin rounded px-4 outline-none py-2"
+      />
+
+      <TinyEditor
+        value={formData.description}
+        onEditorChange={(val) => updateForm("description", val)}
+      />
+
+      <MultipleImageSelection onFilesChange={setSelectedImages} />
+    </div>
+
+    {/* Right Section */}
+    <div className="col-span-6 md:col-span-2 flex flex-col gap-6 mt-10 md:mt-0">
+      {/* First Box */}
+      <div className="gradientBg shadow-lg p-6 rounded flex flex-col gap-4">
+        {/* Buttons */}
+        <div className="flex flex-wrap gap-3 mb-3">
+          <button
+            onClick={handleSave}
+            disabled={uploading}
+            className="activeBg px-4 py-2 rounded cursor-pointer text-sm"
+          >
+            {uploading ? "Uploading..." : "Save"}
+          </button>
+          <button
+            className="activeBg px-4 py-2 rounded cursor-pointer text-sm"
+            onClick={() => router.push("/projects")}
+          >
+            Cancel
+          </button>
         </div>
 
-        <div className="col-span-2">
-          <div className="gradientBg shadow-lg p-7 rounded flex flex-col gap-3">
-            <div className="flex gap-3 mb-3">
-              <button
-                onClick={handleSave}
-                disabled={uploading}
-                className="activeBg px-3 py-1.5 rounded cursor-pointer"
-              >
-                {uploading ? "Uploading..." : "Save"}
-              </button>
-              <button
-                className="activeBg px-3 py-1.5 rounded cursor-pointer"
-                onClick={() => router.push("/projects")}
-              >
-                Cancel
-              </button>
-            </div>
-            <input
-              name="liveLink"
-              value={formData.liveLink}
-              placeholder="Project Link"
-              onChange={(e) => updateForm(e.target.name, e.target.value)}
-              className="subBoxBg w-full subTitleText font-thin rounded px-4 outline-none py-2"
-            />
-            <MultipleSelection
-              names={technologies}
-              tag="Technologies"
-              selectedValues={formData.technologies}
-              onChange={(val) => updateForm("technologies", val)}
-            />
-            <MultipleSelection
-              names={plugins}
-              tag="Plugins"
-              selectedValues={formData.plugins}
-              onChange={(val) => updateForm("plugins", val)}
-            />
-            <SingleSelected
-              names={projectTypes}
-              tag="Project Type"
-              value={formData.projectType}
-              onChange={(val) => updateForm("projectType", val)}
-            />
-          </div>
+        {/* Project Link */}
+        <input
+          name="liveLink"
+          value={formData.liveLink}
+          placeholder="Project Link"
+          onChange={(e) => updateForm(e.target.name, e.target.value)}
+          className="subBoxBg w-full subTitleText font-thin rounded px-4 outline-none py-2"
+        />
 
-          <div className="gradientBg shadow-lg p-7 rounded mt-5">
-            <input
-              name="clientName"
-              placeholder="Client Name"
-              value={formData.clientName}
-              onChange={(e) => updateForm(e.target.name, e.target.value)}
-              className="subBoxBg w-full subTitleText font-thin rounded px-4 outline-none py-2"
-            />
-            <BasicDatePicker
-              tag="Order Date"
-              name="orderDate"
-              value={formData.orderDate}
-              onChange={(name, val) => updateForm(name, val)}
-            />
-            <BasicDatePicker
-              tag="Complete Date"
-              name="completeDate"
-              value={formData.completeDate}
-              onChange={(name, val) => updateForm(name, val)}
-            />
-          </div>
-        </div>
+        {/* Select Fields */}
+        <MultipleSelection
+          names={technologies}
+          tag="Technologies"
+          selectedValues={formData.technologies}
+          onChange={(val) => updateForm("technologies", val)}
+        />
+
+        <MultipleSelection
+          names={plugins}
+          tag="Plugins"
+          selectedValues={formData.plugins}
+          onChange={(val) => updateForm("plugins", val)}
+        />
+
+        <SingleSelected
+          names={projectTypes}
+          tag="Project Type"
+          value={formData.projectType}
+          onChange={(val) => updateForm("projectType", val)}
+        />
+      </div>
+
+      {/* Second Box */}
+      <div className="gradientBg shadow-lg p-6 rounded flex flex-col gap-4">
+        <input
+          name="clientName"
+          placeholder="Client Name"
+          value={formData.clientName}
+          onChange={(e) => updateForm(e.target.name, e.target.value)}
+          className="subBoxBg w-full subTitleText font-thin rounded px-4 outline-none py-2"
+        />
+
+        <BasicDatePicker
+          tag="Order Date"
+          name="orderDate"
+          value={formData.orderDate}
+          onChange={(name, val) => updateForm(name, val)}
+        />
+
+        <BasicDatePicker
+          tag="Complete Date"
+          name="completeDate"
+          value={formData.completeDate}
+          onChange={(name, val) => updateForm(name, val)}
+        />
       </div>
     </div>
+  </div>
+</div>
+
   );
 }
 

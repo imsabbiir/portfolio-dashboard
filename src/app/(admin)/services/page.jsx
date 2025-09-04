@@ -124,7 +124,7 @@ function Page() {
   return (
     <div className="">
       <form
-        className="flex flex-col gap-5 w-1/3 p-10 gradientBg rounded"
+        className="flex flex-col gap-5 md:w-1/3 p-10 gradientBg rounded"
         onSubmit={handleNewServiceSubmit}
       >
         <input

@@ -78,33 +78,33 @@ function Page() {
 
   return (
     <>
-      <div className="w-full h-full">
-        <div className="flex justify-between">
+      <div className="w-full h-full ">
+        <div className="flex flex-col md:flex-row justify-between">
           <li
             onClick={() => router.push("projects/addNewProject")}
-            className="activeBg px-4 py-1.5 rounded flex items-center gap-3 cursor-pointer"
+            className="activeBg px-4 py-1.5 rounded flex items-center gap-3 cursor-pointer text-xs md:text-base w-fit mb-5 md:mb-0"
           >
             <FaPlus /> Add New
           </li>
 
-          <div className="flex gap-2 justify-end">
+          <div className="h-fit flex gap-2 justify-end">
             <input
               type="text"
               placeholder="Search..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="subBoxBg subTitleText font-thin rounded px-4 outline-none"
+              className="subBoxBg subTitleText font-thin rounded px-4 py-1.5 outline-none w-full"
             />
             <button
               onClick={handleSearch}
-              className="activeBg px-4 py-1.5 rounded cursor-pointer"
+              className="activeBg px-4 rounded cursor-pointer text-xs md:text-base "
             >
               Search
             </button>
           </div>
         </div>
 
-        <div className="mt-10 pb-10">
+        <div className="mt-10">
           <h2 className="text-lg titleText">Projects List</h2>
 
           {loading ? (
@@ -112,27 +112,27 @@ function Page() {
           ) : filteredProjects.length === 0 ? (
             <p className="text-center subTitleText mt-10">No projects found.</p>
           ) : (
-            <div className="flex flex-col gap-5 mt-5">
+            <div className="flex flex-col gap-5 mt-5 pb-10">
               {filteredProjects.map((project) => (
                 <div
                   key={project._id}
-                  className="relative w-full h-20 pr-5 subBoxBg drop-shadow-lg flex justify-between rounded overflow-hidden"
+                  className="relative w-full h-20 p-3 md:p-0 subBoxBg drop-shadow-lg flex flex-col md:flex-row md:justify-between rounded overflow-hidden"
                 >
-                  <div className="flex gap-5">
+                  <div className="flex items-center gap-5">
                     <Image
                       src={project.images[0]}
                       alt={project.title}
                       width={500}
                       height={500}
-                      className="w-40 h-full"
+                      className="w-40 h-full hidden md:flex"
                     />
                     <div>
-                      <span className="text-[9px] subTitleText capitalize">
+                      <span className="text-[9px] subTitleText capitalize hidden md:block">
                         {project.projectType}
                       </span>
-                      <h2 className="text-base activeText">{project.title}</h2>
+                      <h2 className="text-xs md:text-base activeText">{project.title}</h2>
                       <div
-                        className="text-xs subTitleText"
+                        className="text-xs subTitleText hidden md:block"
                         dangerouslySetInnerHTML={{
                           __html: DOMPurify.sanitize(
                             stripHtml(project.description).length > 130
@@ -144,7 +144,7 @@ function Page() {
                       ></div>
                     </div>
                   </div>
-                  <div className="flex gap-3">
+                  <div className="flex mt-3 md:mt-0 gap-3">
                     <button
                       className="textWithHover cursor-pointer"
                       onClick={() =>

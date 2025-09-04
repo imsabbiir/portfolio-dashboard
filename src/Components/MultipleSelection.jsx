@@ -32,18 +32,17 @@ export default function MultipleSelection({
     onChange(typeof value === "string" ? value.split(",") : value);
   };
 
-  
-
   return (
-    <div className="">
-      <FormControl sx={{ width: 308 }}>
-        <InputLabel id="demo-multiple-checkbox-label">{tag}</InputLabel>
+    <div className="w-full">
+      <FormControl className="w-full">
+        <InputLabel id={`${tag}-label`}>{tag}</InputLabel>
         <Select
-          labelId="demo-multiple-checkbox-label"
-          id="demo-multiple-checkbox"
+          labelId={`${tag}-label`}
+          id={`${tag}-select`}
+          className="w-full"
           multiple
           value={selectedValues}
-        onChange={handleSelectChange}
+          onChange={handleSelectChange}
           input={<OutlinedInput label={tag} />}
           renderValue={(selected) => selected.join(", ")}
           MenuProps={MenuProps}

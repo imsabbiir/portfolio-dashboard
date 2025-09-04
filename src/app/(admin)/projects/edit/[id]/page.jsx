@@ -185,98 +185,117 @@ function Page() {
   if (loading) return <p className="titleText text-center mt-10">Loading...</p>;
 
   return (
-    <div>
-      <h2 className="text-lg titleText">Edit Project</h2>
-      <div className="grid grid-cols-6 gap-14 mt-5">
-        <div className="col-span-4">
-          <input
-            name="title"
-            value={formData.title}
-            onChange={(e) => updateForm(e.target.name, e.target.value)}
-            placeholder="Project Name"
-            className="gradientBg w-full subTitleText font-thin rounded px-4 outline-none py-2"
-          />
-          <TinyEditor
-            value={formData.description}
-            onEditorChange={(val) => updateForm("description", val)}
-          />
-          <MultipleImageSelection
-            existingImages={existingImages}
-            onFilesChange={setSelectedImages}
-            onExistingImageDelete={(url) =>
-              setExistingImages((prev) => prev.filter((img) => img !== url))
-            }
-          />
-        </div>
+    <div className="w-full max-w-screen-xl mx-auto overflow-x-hidden px-4 sm:px-6">
+  <h2 className="text-lg titleText">Edit Project</h2>
 
-        <div className="col-span-2">
-          <div className="gradientBg shadow-lg p-7 rounded flex flex-col gap-3">
-            <div className="flex gap-3 mb-3">
-              <button
-                onClick={handleUpdate}
-                disabled={uploading}
-                className="activeBg px-3 py-1.5 rounded cursor-pointer"
-              >
-                {uploading ? "Updating..." : "Update"}
-              </button>
-              <button
-                className="activeBg px-3 py-1.5 rounded cursor-pointer"
-                onClick={() => router.push("/projects")}
-              >
-                Cancel
-              </button>
-            </div>
-            <input
-              name="liveLink"
-              value={formData.liveLink}
-              onChange={(e) => updateForm(e.target.name, e.target.value)}
-              placeholder="Project Link"
-              className="subBoxBg w-full subTitleText font-thin rounded px-4 outline-none py-2"
-            />
-            <MultipleSelection
-              names={technologies}
-              tag="Technologies"
-              selectedValues={formData.technologies}
-              onChange={(val) => updateForm("technologies", val)}
-            />
-            <MultipleSelection
-              names={plugins}
-              tag="Plugins"
-              selectedValues={formData.plugins}
-              onChange={(val) => updateForm("plugins", val)}
-            />
-            <SingleSelected
-              names={projectTypes}
-              tag="Project Type"
-              value={formData.projectType}
-              onChange={(val) => updateForm("projectType", val)}
-            />
-          </div>
+  <div className="grid grid-cols-1 md:grid-cols-6 gap-8 md:gap-14 mt-5">
+    {/* Left Section */}
+    <div className="col-span-6 md:col-span-4">
+      <input
+        name="title"
+        value={formData.title}
+        onChange={(e) => updateForm(e.target.name, e.target.value)}
+        placeholder="Project Name"
+        className="gradientBg w-full subTitleText font-thin rounded px-4 outline-none py-2 mb-4"
+      />
 
-          <div className="gradientBg shadow-lg p-7 rounded mt-5">
-            <input
-              name="clientName"
-              value={formData.clientName}
-              onChange={(e) => updateForm(e.target.name, e.target.value)}
-              placeholder="Client Name"
-              className="subBoxBg w-full subTitleText font-thin rounded px-4 outline-none py-2"
-            />
-            <BasicDatePicker
-              tag="Order Date"
-              name="orderDate"
-              value={formData.orderDate}
-              onChange={(name, val) => updateForm(name, val)}
-            />
-            <BasicDatePicker
-              tag="Complete Date"
-              name="completeDate"
-              value={formData.completeDate}
-              onChange={(name, val) => updateForm(name, val)}
-            />
-          </div>
-        </div>
+      <TinyEditor
+        value={formData.description}
+        onEditorChange={(val) => updateForm("description", val)}
+      />
+
+      <div className="mt-4">
+        <MultipleImageSelection
+          existingImages={existingImages}
+          onFilesChange={setSelectedImages}
+          onExistingImageDelete={(url) =>
+            setExistingImages((prev) => prev.filter((img) => img !== url))
+          }
+        />
       </div>
     </div>
+
+    {/* Right Section */}
+    <div className="col-span-6 md:col-span-2 flex flex-col gap-6 mt-10 md:mt-0">
+      {/* Main Project Info */}
+      <div className="gradientBg shadow-lg p-6 rounded flex flex-col gap-4">
+        {/* Buttons */}
+        <div className="flex flex-wrap gap-3">
+          <button
+            onClick={handleUpdate}
+            disabled={uploading}
+            className="activeBg px-4 py-2 rounded cursor-pointer text-sm"
+          >
+            {uploading ? "Updating..." : "Update"}
+          </button>
+          <button
+            className="activeBg px-4 py-2 rounded cursor-pointer text-sm"
+            onClick={() => router.push("/projects")}
+          >
+            Cancel
+          </button>
+        </div>
+
+        {/* Project Link */}
+        <input
+          name="liveLink"
+          value={formData.liveLink}
+          onChange={(e) => updateForm(e.target.name, e.target.value)}
+          placeholder="Project Link"
+          className="subBoxBg w-full subTitleText font-thin rounded px-4 outline-none py-2"
+        />
+
+        {/* Technology / Plugin / Type */}
+        <MultipleSelection
+          names={technologies}
+          tag="Technologies"
+          selectedValues={formData.technologies}
+          onChange={(val) => updateForm("technologies", val)}
+        />
+
+        <MultipleSelection
+          names={plugins}
+          tag="Plugins"
+          selectedValues={formData.plugins}
+          onChange={(val) => updateForm("plugins", val)}
+        />
+
+        <SingleSelected
+          names={projectTypes}
+          tag="Project Type"
+          value={formData.projectType}
+          onChange={(val) => updateForm("projectType", val)}
+        />
+      </div>
+
+      {/* Client & Dates */}
+      <div className="gradientBg shadow-lg p-6 rounded flex flex-col gap-4">
+        <input
+          name="clientName"
+          value={formData.clientName}
+          onChange={(e) => updateForm(e.target.name, e.target.value)}
+          placeholder="Client Name"
+          className="subBoxBg w-full subTitleText font-thin rounded px-4 outline-none py-2"
+        />
+
+        <BasicDatePicker
+          tag="Order Date"
+          name="orderDate"
+          value={formData.orderDate}
+          onChange={(name, val) => updateForm(name, val)}
+        />
+
+        <BasicDatePicker
+          tag="Complete Date"
+          name="completeDate"
+          value={formData.completeDate}
+          onChange={(name, val) => updateForm(name, val)}
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
   );
 }
 

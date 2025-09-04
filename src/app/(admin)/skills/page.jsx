@@ -165,7 +165,7 @@ export default function Page() {
   );
 
   return (
-    <div className="grid grid-cols-2 gap-7">
+    <div className="grid md:grid-cols-2 gap-7">
       <div className="grid gap-7">
         {renderList("languages")}
         {renderList("technologies")}
